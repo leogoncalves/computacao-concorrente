@@ -2,7 +2,7 @@
 #include <stdlib.h> 
 #include <pthread.h>
 
-#define NTHREADS  2
+#define NTHREADS 4
 #define SIZE_VECTOR 10
 
 typedef struct {
@@ -19,7 +19,9 @@ int main(void) {
     pthread_t tid[NTHREADS];
     int thread;
     int *vector = malloc(sizeof(int) * SIZE_VECTOR);
-    *vector = 0;
+    for(int i = 0; i < SIZE_VECTOR; i++){
+        *(vector+i) = 0;
+    }
     thread_arguments *args;
 
     printf("Estado inicial do vetor de %d elementos \n", SIZE_VECTOR);
@@ -64,8 +66,8 @@ void* increment_element_in_array(void* arg) {
     thread_arguments *args = (thread_arguments*) arg;
     int thread_id = args->thread_id;       
     
-    for(int i = thread_id; i < SIZE_VECTOR; i += 2) {        
-        args->vector[i] = 1;
+    for(int i = thread_id; i < SIZE_VECTOR; i += NTHREADS) {        
+        args->vector[i]++;
     }
 
     free(args);
@@ -75,7 +77,7 @@ void* increment_element_in_array(void* arg) {
 void printArray (int vector[]) {
     printf("[");
     for(int i = 0; i < SIZE_VECTOR; i++) {
-        printf(" %d, ", vector[i]);
+        printf(" %d ", vector[i]);
     }
     printf("]\n");
 }
