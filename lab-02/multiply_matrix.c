@@ -41,7 +41,7 @@ int main(void) {
     // print_matrix(matrixB, matrix_size, matrix_size);
     // printf("\n");
 
-    // transpose_matrix(matrixB, matrix_size);
+    transpose_matrix(matrixB, matrix_size);
     // print_matrix(matrixB, matrix_size, matrix_size);
 
     // printf("\n");
@@ -150,9 +150,9 @@ void* multiply_matrix(void* arg) {
     for(int col = 0; col < args->size; col++){
         for(int idx = 0; idx < args->size; idx++) {        
             int x = args->matrixA[offset(args->size, args->row, idx)];
-            int y = args->matrixB[offset(args->size, idx, col)];
+            // int y = args->matrixB[offset(args->size, idx, col)];
             // int y = args->matrixB[offset(args->size, idx, args->col)];
-            // int y = args->matrixB[invert_offset(args->size, idx, args->col)];
+            int y = args->matrixB[invert_offset(args->size, idx, col)];
             // int *z = &args->matrixC[offset(args->size, args->row, args->col)];
             int *z = &args->matrixC[offset(args->size, args->row, col)];
             *z += x * y;
