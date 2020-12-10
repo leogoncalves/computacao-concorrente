@@ -4,7 +4,7 @@ run: build
 	@./main
 
 build: 
-	gcc --std=c11 multiply_matrix.c -o main -Wall -lpthread
+	gcc multiply_matrix.c -o main -Wall -lpthread
 
 debug:
 	gcc -g --std=c11 multiply_matrix.c -o main -Wall -lpthread
