@@ -26,28 +26,40 @@ int offset(int size, int row, int column);
 
 int main(void) {
     srand(time(NULL));
-    int matrix_size = 500;
+    int matrix_size = 2;
     int MAX_THREADS = 1;
     int row, nthreads;
     double start, finish, elapsed;
     double total_execution_time = 0.0;
+    int VERBOSE = 1;
 
     printf("Execução com Dimensão %d e %d threads \n", matrix_size, MAX_THREADS);
     
     GET_TIME(start);
     int* matrixA = allocate_space_to_matrix(matrix_size, matrix_size);
     populate_matrix(matrixA, matrix_size, matrix_size);
-    // print_matrix(matrixA, matrix_size, matrix_size);
-    // printf("\n");
+    
+    if(VERBOSE){
+        print_matrix(matrixA, matrix_size, matrix_size);
+        printf("\n");
+    }
     
     int* matrixB = allocate_space_to_matrix(matrix_size, matrix_size);
     populate_matrix(matrixB, matrix_size, matrix_size);
-    // print_matrix(matrixB, matrix_size, matrix_size);
-    // printf("\n");
+    
+    if(VERBOSE){
+        print_matrix(matrixB, matrix_size, matrix_size);
+        printf("\n");
+    }
+    
     
     int* matrixC = allocate_space_to_matrix(matrix_size, matrix_size);
-    // print_matrix(matrixC, matrix_size, matrix_size);
-    // printf("\n");
+
+    if(VERBOSE){
+        print_matrix(matrixC, matrix_size, matrix_size);
+        printf("\n");
+    }
+    
     GET_TIME(finish);
     
     elapsed = finish - start;
@@ -108,6 +120,11 @@ int main(void) {
     start = 0.0;
     finish = 0.0;
 
+    if(VERBOSE){
+        print_matrix(matrixC, matrix_size, matrix_size);
+        printf("\n");
+    }
+
 
     GET_TIME(start);
     free(args);
@@ -123,9 +140,7 @@ int main(void) {
     finish = 0.0;
 
     printf("Tempo total gasto: %lf \n", total_execution_time);
-
-    // print_matrix(matrixC, matrix_size, matrix_size);
-
+    
     return 0;
 }
 
