@@ -23,14 +23,23 @@ void* multiply_matrix(void* arg);
 void print_matrix(int* matrix, int rows, int cols);
 void free_matrix(int *matrix);
 int offset(int size, int row, int column);
-void multiply(int matrix_size, int MAX_THREADS);
+void multiply(int matrix_size, int MAX_THREADS, int VERBOSE);
 
-int main(void) {
+int main(int argc, char *argv[]) {
     srand(time(NULL));
-    int matrix_size = 2;
-    int MAX_THREADS = 1;
+
+    if(argc < 3) {
+        printf("Faltam argumentos \n");
+        return 1;
+    }
+
+    // int matrix_size = 2;
+    // int MAX_THREADS = 1;
+    int matrix_size = atoi(argv[1]);
+    int MAX_THREADS = atoi(argv[2]);
+    int VERBOSE = atoi(argv[3]);
     
-    multiply(matrix_size, MAX_THREADS);
+    multiply(matrix_size, MAX_THREADS, VERBOSE);
     
     return 0;
 }
@@ -91,12 +100,10 @@ void free_matrix(int *matrix) {
     free(matrix);
 }
 
-
-void multiply(int matrix_size, int MAX_THREADS) {
+void multiply(int matrix_size, int MAX_THREADS, int VERBOSE) {
     int row, nthreads;
     double start, finish, elapsed;
     double total_execution_time = 0.0;
-    int VERBOSE = 1;
 
     printf("Execução com Dimensão %d e %d threads \n", matrix_size, MAX_THREADS);
     
@@ -204,5 +211,5 @@ void multiply(int matrix_size, int MAX_THREADS) {
     start = 0.0;
     finish = 0.0;
 
-    printf("Tempo total gasto: %lf \n", total_execution_time);
+    printf("Tempo total gasto: %lf \n\n", total_execution_time);
 }
