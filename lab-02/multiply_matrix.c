@@ -23,11 +23,76 @@ void* multiply_matrix(void* arg);
 void print_matrix(int* matrix, int rows, int cols);
 void free_matrix(int *matrix);
 int offset(int size, int row, int column);
+void multiply(int matrix_size, int MAX_THREADS);
 
 int main(void) {
     srand(time(NULL));
     int matrix_size = 2;
     int MAX_THREADS = 1;
+    
+    multiply(matrix_size, MAX_THREADS);
+    
+    return 0;
+}
+
+int *allocate_space_to_matrix(int rows, int cols) {
+    int *matrix = (int*)malloc(rows * cols * sizeof(int));
+    if(matrix == NULL) {
+        printf("Erro na alocação de espaço da matrix");
+        exit(-1);
+    }
+    return matrix;
+}
+
+void populate_matrix(int* matrix, int rows, int cols) {
+    int i,j;
+    for(i = 0; i < rows; i++)
+        for(j = 0; j < cols; j++)
+            *(matrix + i*cols+j) = random_number(MIN_VALUE, MAX_VALUE);
+}
+
+void print_matrix(int* matrix, int rows, int cols) {
+    int i,j;
+    for(i = 0; i < rows; i++){
+        for(j = 0; j < cols; j++) {
+            printf("%d ", *(matrix + i*rows+j));
+        }
+        printf("\t\n");
+    }
+}
+
+int offset(int size, int row, int column) {
+    return size * row + column;
+}
+
+void* multiply_matrix(void* arg) {
+    thread_arguments *args = (thread_arguments*) arg;
+
+    for(int row = args->row; row < args->size; row+= args->nthreads) {
+        for(int col = 0; col < args->size; col++) {
+            for(int idx = 0; idx < args->size; idx++) {        
+                int x = args->matrixA[offset(args->size, row, idx)];
+                int y = args->matrixB[offset(args->size, idx, col)];
+                int *z = &args->matrixC[offset(args->size, row, col)];
+                *z += x * y;
+                
+            }
+        }
+    }
+    pthread_exit(NULL);
+}
+
+int random_number(int min, int max) {
+    int random = rand();
+    return random % (max - min + 1 ) + min;
+}
+
+void free_matrix(int *matrix) {
+    free(matrix);
+}
+
+
+void multiply(int matrix_size, int MAX_THREADS) {
     int row, nthreads;
     double start, finish, elapsed;
     double total_execution_time = 0.0;
@@ -140,62 +205,4 @@ int main(void) {
     finish = 0.0;
 
     printf("Tempo total gasto: %lf \n", total_execution_time);
-    
-    return 0;
-}
-
-int *allocate_space_to_matrix(int rows, int cols) {
-    int *matrix = (int*)malloc(rows * cols * sizeof(int));
-    if(matrix == NULL) {
-        printf("Erro na alocação de espaço da matrix");
-        exit(-1);
-    }
-    return matrix;
-}
-
-void populate_matrix(int* matrix, int rows, int cols) {
-    int i,j;
-    for(i = 0; i < rows; i++)
-        for(j = 0; j < cols; j++)
-            *(matrix + i*cols+j) = random_number(MIN_VALUE, MAX_VALUE);
-}
-
-void print_matrix(int* matrix, int rows, int cols) {
-    int i,j;
-    for(i = 0; i < rows; i++){
-        for(j = 0; j < cols; j++) {
-            printf("%d ", *(matrix + i*rows+j));
-        }
-        printf("\t\n");
-    }
-}
-
-int offset(int size, int row, int column) {
-    return size * row + column;
-}
-
-void* multiply_matrix(void* arg) {
-    thread_arguments *args = (thread_arguments*) arg;
-
-    for(int row = args->row; row < args->size; row+= args->nthreads) {
-        for(int col = 0; col < args->size; col++) {
-            for(int idx = 0; idx < args->size; idx++) {        
-                int x = args->matrixA[offset(args->size, row, idx)];
-                int y = args->matrixB[offset(args->size, idx, col)];
-                int *z = &args->matrixC[offset(args->size, row, col)];
-                *z += x * y;
-                
-            }
-        }
-    }
-    pthread_exit(NULL);
-}
-
-int random_number(int min, int max) {
-    int random = rand();
-    return random % (max - min + 1 ) + min;
-}
-
-void free_matrix(int *matrix) {
-    free(matrix);
 }
