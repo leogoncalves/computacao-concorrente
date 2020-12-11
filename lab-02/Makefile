@@ -1,7 +1,7 @@
 all: run
 
 run: build
-	@./main
+	@./main 500 1 0
 
 test: build
 	# tamanho da matrix | numero de threads | modo verboso ou não
