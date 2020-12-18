@@ -1,7 +1,7 @@
 all: build
 
 test: build
-	@./main 1
+	@./main 1 > tests.md
 
 build: 
 	gcc serie.c -o main -Wall -lpthread -lm

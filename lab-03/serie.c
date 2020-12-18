@@ -163,9 +163,10 @@ void task(long long int terms, int nthreads) {
     total_execution_time += elapsed;
     start = 0.0;
     finish = 0.0;
-
-    printf("Valor total da soma: %Lf \n", 4 * sum_total);  
-    printf("Valor de PI: %f \n", M_PI);    
+    printf("Valor total da soma: %1.16Lf \n", 4 * sum_total);  
+    printf("Valor de PI: %1.16f \n", M_PI);    
+    long double error = (4 * sum_total) - M_PI;
+    printf("Erro estimado: %1.16Lf \n", error);    
     printf("Tempo total de execução: %lf segundos \n", total_execution_time);
 
     free(tid);
