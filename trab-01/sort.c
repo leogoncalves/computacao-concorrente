@@ -3,18 +3,42 @@
 #include <pthread.h>
 #include <time.h>
 #include "macros/timer.h"
+#include <math.h>
 
 void quicksort(int array[], int lower, int high);
 int partition(int array[], int lower, int high);
 void swap(int* a, int* b);
 void printArray(int* arr, int size);
+int random_number(int min, int max);
+void sequential();
 
 int main(int argc, char *argv[]) {
-    int array[] = {32,12,32323, 321,12,1,0,-1};
-    printArray(array, 7);
-    quicksort(array, 0, 6);
-    printArray(array, 7);
+    srand(time(NULL));
+    sequential();
+    
     return 0;
+}
+
+void sequential() {
+    double start, finish, elapsed;
+    int size = 50; // pow(10,8);
+
+    int *array = (int*) malloc(size * sizeof(int));
+    for(int i = 0; i < size; i++) {
+        *(array + i) = random_number(0, 8096);
+    }
+    printArray(array, size);
+    GET_TIME(start);
+    quicksort(array, 0, size - 1);
+    GET_TIME(finish);
+    elapsed = finish - start;
+    printArray(array, size);
+    printf("Tempo para ordenar os resultados: %lf segundos \n", elapsed);
+}
+
+int random_number(int min, int max) {
+    int random = rand();
+    return random % (max - min + 1 ) + min;
 }
 
 void quicksort(int array[], int lower, int high) {
@@ -40,14 +64,14 @@ int partition(int array[], int lower, int high){
 }
 
 void swap(int* a, int* b){
-    int t = *a;
+    int aux = *a;
     *a = *b;
-    *b = t;
+    *b = aux;
 }
 
 void printArray(int* arr, int size) {    
     for(int i = 0; i < size; i++){
         printf("%d ", arr[i]);
     }
-    printf("\n");
+    printf("\n\n");
 }
