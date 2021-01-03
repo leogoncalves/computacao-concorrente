@@ -4,7 +4,7 @@ test: build
 	@./main
 
 build: 
-	gcc sort.c -o main -Wall -lpthread -lm
+	gcc montecarlo_pi.c -o main -Wall -lpthread -lm
 
 debug:
-	gcc -g sort.c -o main -Wall -lpthread -lm
+	gcc -g montecarlo_pi.c -o main -Wall -lpthread -lm
