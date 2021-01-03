@@ -96,7 +96,7 @@ void* sum_alternated_series(void* arg) {
     *sum = 0;
     // caso tenha resto na divisao, tratamos
     if(id == nthreads - 1) {
-        end = block_size;    
+        end = terms;    
     } else {
         end = ini + block_size;
     }    
