@@ -57,3 +57,8 @@ Mkfile.old
 dkms.conf
 
 # End of https://www.toptal.com/developers/gitignore/api/c
+
+montecarlo_sequencial
+montecarlo_thread
+main
+leibniz_pi
