@@ -15,3 +15,5 @@ Para executar um programa, no terminal, faça
 > $ ./montecarlo_sequencial 1000
 
 onde 1000 é o número de pontos a sere usados.
+
+O relatório para o trabalho pode ser encontrado [aqui](./relatorio.pdf).
