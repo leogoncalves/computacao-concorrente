@@ -1,0 +1,504 @@
+| terms = 1000 | nthreads=1 |Tam_Bloco = 1000 
+
+Criação de identificadores de threads: 0.000001 segundos 
+Criação de threads: 0.000025 segundos 
+Tempo de exeução das threads: 0.000225 segundos 
+Valor total da soma: 3.1425916543395432 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0009990007497501 
+Tempo total de execução: 0.000251 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000018 segundos 
+Tempo de exeução das threads: 0.000083 segundos 
+Valor total da soma: 3.1425916543395432 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0009990007497501 
+Tempo total de execução: 0.000101 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000023 segundos 
+Tempo de exeução das threads: 0.000066 segundos 
+Valor total da soma: 3.1425916543395432 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0009990007497501 
+Tempo total de execução: 0.000089 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000022 segundos 
+Tempo de exeução das threads: 0.000066 segundos 
+Valor total da soma: 3.1425916543395432 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0009990007497501 
+Tempo total de execução: 0.000088 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000021 segundos 
+Tempo de exeução das threads: 0.000102 segundos 
+Valor total da soma: 3.1425916543395432 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0009990007497501 
+Tempo total de execução: 0.000123 segundos 
+
+| terms = 100000 | nthreads=1 |Tam_Bloco = 100000 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000022 segundos 
+Tempo de exeução das threads: 0.002086 segundos 
+Valor total da soma: 3.1416026534897942 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000099999000010 
+Tempo total de execução: 0.002108 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000022 segundos 
+Tempo de exeução das threads: 0.002158 segundos 
+Valor total da soma: 3.1416026534897942 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000099999000010 
+Tempo total de execução: 0.002181 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000041 segundos 
+Tempo de exeução das threads: 0.002534 segundos 
+Valor total da soma: 3.1416026534897942 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000099999000010 
+Tempo total de execução: 0.002575 segundos 
+
+Criação de identificadores de threads: 0.000001 segundos 
+Criação de threads: 0.000036 segundos 
+Tempo de exeução das threads: 0.002184 segundos 
+Valor total da soma: 3.1416026534897942 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000099999000010 
+Tempo total de execução: 0.002221 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000022 segundos 
+Tempo de exeução das threads: 0.002177 segundos 
+Valor total da soma: 3.1416026534897942 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000099999000010 
+Tempo total de execução: 0.002199 segundos 
+
+| terms = 10000000 | nthreads=1 |Tam_Bloco = 10000000 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000032 segundos 
+Tempo de exeução das threads: 0.155599 segundos 
+Valor total da soma: 3.1415927535897834 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000999999903 
+Tempo total de execução: 0.155631 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000023 segundos 
+Tempo de exeução das threads: 0.154465 segundos 
+Valor total da soma: 3.1415927535897834 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000999999903 
+Tempo total de execução: 0.154488 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000028 segundos 
+Tempo de exeução das threads: 0.152799 segundos 
+Valor total da soma: 3.1415927535897834 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000999999903 
+Tempo total de execução: 0.152827 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000022 segundos 
+Tempo de exeução das threads: 0.154033 segundos 
+Valor total da soma: 3.1415927535897834 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000999999903 
+Tempo total de execução: 0.154055 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000021 segundos 
+Tempo de exeução das threads: 0.152126 segundos 
+Valor total da soma: 3.1415927535897834 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000999999903 
+Tempo total de execução: 0.152147 segundos 
+
+| terms = 1000000000 | nthreads=1 |Tam_Bloco = 1000000000 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000020 segundos 
+Tempo de exeução das threads: 15.238573 segundos 
+Valor total da soma: 3.1415926545897934 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000010000003 
+Tempo total de execução: 15.238593 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000020 segundos 
+Tempo de exeução das threads: 15.259507 segundos 
+Valor total da soma: 3.1415926545897934 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000010000003 
+Tempo total de execução: 15.259528 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000033 segundos 
+Tempo de exeução das threads: 15.065981 segundos 
+Valor total da soma: 3.1415926545897934 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000010000003 
+Tempo total de execução: 15.066014 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000018 segundos 
+Tempo de exeução das threads: 15.002626 segundos 
+Valor total da soma: 3.1415926545897934 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000010000003 
+Tempo total de execução: 15.002644 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000020 segundos 
+Tempo de exeução das threads: 15.073431 segundos 
+Valor total da soma: 3.1415926545897934 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000010000003 
+Tempo total de execução: 15.073451 segundos 
+
+| terms = 1000 | nthreads=2 |Tam_Bloco = 500 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000038 segundos 
+Tempo de exeução das threads: 0.000059 segundos 
+Valor total da soma: 3.1465876583355472 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0049950047457541 
+Tempo total de execução: 0.000098 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000027 segundos 
+Tempo de exeução das threads: 0.000048 segundos 
+Valor total da soma: 3.1465876583355472 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0049950047457541 
+Tempo total de execução: 0.000075 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000025 segundos 
+Tempo de exeução das threads: 0.000060 segundos 
+Valor total da soma: 3.1465876583355472 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0049950047457541 
+Tempo total de execução: 0.000085 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000028 segundos 
+Tempo de exeução das threads: 0.000061 segundos 
+Valor total da soma: 3.1465876583355472 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0049950047457541 
+Tempo total de execução: 0.000089 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000025 segundos 
+Tempo de exeução das threads: 0.000073 segundos 
+Valor total da soma: 3.1465876583355472 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0049950047457541 
+Tempo total de execução: 0.000098 segundos 
+
+| terms = 100000 | nthreads=2 |Tam_Bloco = 50000 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000021 segundos 
+Tempo de exeução das threads: 0.000794 segundos 
+Valor total da soma: 3.1416426530897982 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000499995000050 
+Tempo total de execução: 0.000815 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000031 segundos 
+Tempo de exeução das threads: 0.000818 segundos 
+Valor total da soma: 3.1416426530897982 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000499995000050 
+Tempo total de execução: 0.000849 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000028 segundos 
+Tempo de exeução das threads: 0.000779 segundos 
+Valor total da soma: 3.1416426530897982 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000499995000050 
+Tempo total de execução: 0.000807 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000026 segundos 
+Tempo de exeução das threads: 0.000784 segundos 
+Valor total da soma: 3.1416426530897982 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000499995000050 
+Tempo total de execução: 0.000810 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000026 segundos 
+Tempo de exeução das threads: 0.000815 segundos 
+Valor total da soma: 3.1416426530897982 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000499995000050 
+Tempo total de execução: 0.000841 segundos 
+
+| terms = 10000000 | nthreads=2 |Tam_Bloco = 5000000 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000026 segundos 
+Tempo de exeução das threads: 0.075263 segundos 
+Valor total da soma: 3.1415931535897434 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000004999999503 
+Tempo total de execução: 0.075289 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000033 segundos 
+Tempo de exeução das threads: 0.075818 segundos 
+Valor total da soma: 3.1415931535897434 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000004999999503 
+Tempo total de execução: 0.075851 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000035 segundos 
+Tempo de exeução das threads: 0.074995 segundos 
+Valor total da soma: 3.1415931535897434 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000004999999503 
+Tempo total de execução: 0.075030 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000032 segundos 
+Tempo de exeução das threads: 0.075980 segundos 
+Valor total da soma: 3.1415931535897434 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000004999999503 
+Tempo total de execução: 0.076012 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000039 segundos 
+Tempo de exeução das threads: 0.074969 segundos 
+Valor total da soma: 3.1415931535897434 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000004999999503 
+Tempo total de execução: 0.075008 segundos 
+
+| terms = 1000000000 | nthreads=2 |Tam_Bloco = 500000000 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000043 segundos 
+Tempo de exeução das threads: 7.505722 segundos 
+Valor total da soma: 3.1415926585897934 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000050000003 
+Tempo total de execução: 7.505765 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000039 segundos 
+Tempo de exeução das threads: 7.472294 segundos 
+Valor total da soma: 3.1415926585897934 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000050000003 
+Tempo total de execução: 7.472333 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000043 segundos 
+Tempo de exeução das threads: 7.513909 segundos 
+Valor total da soma: 3.1415926585897934 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000050000003 
+Tempo total de execução: 7.513952 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000031 segundos 
+Tempo de exeução das threads: 7.525025 segundos 
+Valor total da soma: 3.1415926585897934 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000050000003 
+Tempo total de execução: 7.525057 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000026 segundos 
+Tempo de exeução das threads: 7.506041 segundos 
+Valor total da soma: 3.1415926585897934 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000050000003 
+Tempo total de execução: 7.506067 segundos 
+
+| terms = 1000 | nthreads=4 |Tam_Bloco = 250 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000077 segundos 
+Tempo de exeução das threads: 0.000018 segundos 
+Valor total da soma: 3.1572365803449594 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0156439267551663 
+Tempo total de execução: 0.000095 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000102 segundos 
+Tempo de exeução das threads: 0.000069 segundos 
+Valor total da soma: 3.1572365803449594 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0156439267551663 
+Tempo total de execução: 0.000170 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000045 segundos 
+Tempo de exeução das threads: 0.000045 segundos 
+Valor total da soma: 3.1572365803449594 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0156439267551663 
+Tempo total de execução: 0.000089 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000048 segundos 
+Tempo de exeução das threads: 0.000035 segundos 
+Valor total da soma: 3.1572365803449594 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0156439267551663 
+Tempo total de execução: 0.000084 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000036 segundos 
+Tempo de exeução das threads: 0.000039 segundos 
+Valor total da soma: 3.1572365803449594 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0156439267551663 
+Tempo total de execução: 0.000075 segundos 
+
+| terms = 100000 | nthreads=4 |Tam_Bloco = 25000 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000035 segundos 
+Tempo de exeução das threads: 0.000467 segundos 
+Valor total da soma: 3.1417493179787202 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0001566643889271 
+Tempo total de execução: 0.000502 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000040 segundos 
+Tempo de exeução das threads: 0.000476 segundos 
+Valor total da soma: 3.1417493179787202 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0001566643889271 
+Tempo total de execução: 0.000516 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000038 segundos 
+Tempo de exeução das threads: 0.000650 segundos 
+Valor total da soma: 3.1417493179787202 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0001566643889271 
+Tempo total de execução: 0.000688 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000040 segundos 
+Tempo de exeução das threads: 0.000398 segundos 
+Valor total da soma: 3.1417493179787202 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0001566643889271 
+Tempo total de execução: 0.000438 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000037 segundos 
+Tempo de exeução das threads: 0.000491 segundos 
+Valor total da soma: 3.1417493179787202 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0001566643889271 
+Tempo total de execução: 0.000528 segundos 
+
+| terms = 10000000 | nthreads=4 |Tam_Bloco = 2500000 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000053 segundos 
+Tempo de exeução das threads: 0.038186 segundos 
+Valor total da soma: 3.1415942202562323 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000015666664392 
+Tempo total de execução: 0.038239 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000054 segundos 
+Tempo de exeução das threads: 0.038643 segundos 
+Valor total da soma: 3.1415942202562323 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000015666664392 
+Tempo total de execução: 0.038697 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000052 segundos 
+Tempo de exeução das threads: 0.043291 segundos 
+Valor total da soma: 3.1415942202562323 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000015666664392 
+Tempo total de execução: 0.043343 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000049 segundos 
+Tempo de exeução das threads: 0.038675 segundos 
+Valor total da soma: 3.1415942202562323 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000015666664392 
+Tempo total de execução: 0.038725 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000045 segundos 
+Tempo de exeução das threads: 0.038880 segundos 
+Valor total da soma: 3.1415942202562323 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000015666664392 
+Tempo total de execução: 0.038925 segundos 
+
+| terms = 1000000000 | nthreads=4 |Tam_Bloco = 250000000 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000069 segundos 
+Tempo de exeução das threads: 3.817783 segundos 
+Valor total da soma: 3.1415926692564600 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000156666669 
+Tempo total de execução: 3.817852 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000054 segundos 
+Tempo de exeução das threads: 3.768457 segundos 
+Valor total da soma: 3.1415926692564600 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000156666669 
+Tempo total de execução: 3.768511 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000048 segundos 
+Tempo de exeução das threads: 3.765149 segundos 
+Valor total da soma: 3.1415926692564600 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000156666669 
+Tempo total de execução: 3.765197 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000049 segundos 
+Tempo de exeução das threads: 3.812374 segundos 
+Valor total da soma: 3.1415926692564600 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000156666669 
+Tempo total de execução: 3.812423 segundos 
+
+Criação de identificadores de threads: 0.000000 segundos 
+Criação de threads: 0.000045 segundos 
+Tempo de exeução das threads: 3.769687 segundos 
+Valor total da soma: 3.1415926692564600 
+Valor de PI: 3.1415926535897931 
+Erro estimado: 0.0000000156666669 
+Tempo total de execução: 3.769733 segundos 
+

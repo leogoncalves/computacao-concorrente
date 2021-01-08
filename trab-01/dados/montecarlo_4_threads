@@ -1,0 +1,104 @@
+10^3 termos, 4 threads 
+782.000000 1000.000000 
+Valor de Pi (aproximado): 3.1280000000000001 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 0.000239 segundos 
+
+769.000000 1000.000000 
+Valor de Pi (aproximado): 3.0760000000000001 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 0.000145 segundos 
+
+791.000000 1000.000000 
+Valor de Pi (aproximado): 3.1640000000000001 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 0.000106 segundos 
+
+785.000000 1000.000000 
+Valor de Pi (aproximado): 3.1400000000000001 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 0.000118 segundos 
+
+788.000000 1000.000000 
+Valor de Pi (aproximado): 3.1520000000000001 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 0.000097 segundos 
+
+10^5 termos, 4 threads 
+78621.000000 100000.000000 
+Valor de Pi (aproximado): 3.1448399999999999 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 0.001688 segundos 
+
+78672.000000 100000.000000 
+Valor de Pi (aproximado): 3.1468799999999999 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 0.001812 segundos 
+
+78514.000000 100000.000000 
+Valor de Pi (aproximado): 3.1405599999999998 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 0.001832 segundos 
+
+78445.000000 100000.000000 
+Valor de Pi (aproximado): 3.1377999999999999 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 0.001990 segundos 
+
+78553.000000 100000.000000 
+Valor de Pi (aproximado): 3.1421199999999998 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 0.001792 segundos 
+
+10^7 termos, 4 threads 
+7854718.000000 10000000.000000 
+Valor de Pi (aproximado): 3.1418872000000002 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 0.139615 segundos 
+
+7854166.000000 10000000.000000 
+Valor de Pi (aproximado): 3.1416664000000001 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 0.139115 segundos 
+
+7852715.000000 10000000.000000 
+Valor de Pi (aproximado): 3.1410860000000000 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 0.138894 segundos 
+
+7851857.000000 10000000.000000 
+Valor de Pi (aproximado): 3.1407427999999999 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 0.138284 segundos 
+
+7851572.000000 10000000.000000 
+Valor de Pi (aproximado): 3.1406288000000000 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 0.141321 segundos 
+
+10^9 termos, 4 threads 
+785400860.000000 1000000000.000000 
+Valor de Pi (aproximado): 3.1416034399999999 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 13.824851 segundos 
+
+785428792.000000 1000000000.000000 
+Valor de Pi (aproximado): 3.1417151680000002 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 13.773739 segundos 
+
+785411797.000000 1000000000.000000 
+Valor de Pi (aproximado): 3.1416471879999999 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 13.890777 segundos 
+
+785392686.000000 1000000000.000000 
+Valor de Pi (aproximado): 3.1415707440000000 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 13.783336 segundos 
+
+785393966.000000 1000000000.000000 
+Valor de Pi (aproximado): 3.1415758640000000 
+Valor de PI (M_PI de math.h): 3.1415926535897931 
+Tempo total de execução das threads: 13.817173 segundos 
+
