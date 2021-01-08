@@ -10,19 +10,32 @@ int nthreads;
 int radius;
 
 void montecarlo(long long int terms, int radius);
+void simulate(int magnitude);
 
 int main(int argc, char *argv[]) {
     srand(time(NULL));
     
-    radius = 1;   
-    terms = 1000000;
-    
-    for(int i = 0; i < 1000; i++) {
-        montecarlo(terms, radius);
-        printf("\n");
+    if(argc < 2) {
+        printf("Faltam argumentos. Informe a quantidade de termos na serie\n\n");
+        exit(-1);
     }
-    
+
+    radius = 1;   
+    terms = atoll(argv[1]);
+
+    printf("Monte Carlo Sequencial com %lld termos \n", terms);
+    montecarlo(terms, radius);    
+
     return 0;
+}
+
+void simulate(int magnitude) {
+    terms = pow(10, magnitude);
+    radius = 1;   
+    printf("Monte Carlo Sequencial com %d termos \n", magnitude);
+    for(int i = 0; i < 5; i++) {
+        montecarlo(terms, radius);
+    }
 }
 
 void montecarlo(long long int terms, int radius) {
@@ -38,7 +51,7 @@ void montecarlo(long long int terms, int radius) {
         }
     }
 
-    long double approximate_pi =  (long double) 4 * hits/terms;
+    long double approximate_pi =  (long double) 4.0 * (hits*1.0)/terms;
     GET_TIME(finish);
     elapsed = finish - start;
     printf("Valor de Pi (aproximado): %1.16Lf \n", approximate_pi);

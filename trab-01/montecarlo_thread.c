@@ -16,15 +16,19 @@ void seed_rand(int thread_id, struct drand48_data *buffer);
 int main(int argc, char *argv[]) {
     srand(time(NULL));
     
-    radius = 1;   
-    terms = 1000000;
-    nthreads = 4;
-    
-    for(int i = 0; i < 1000; i++) {
-        montecarlo_threads(terms, nthreads);
-        printf("\n");
+    if(argc < 3) {
+        printf("Faltam argumentos. Informe: \n - A quantidade de termos na serie \n - Quantidades de threads usadas \n");
+        exit(-1);
     }
+
+    radius = 1;   
+    terms = atoi(argv[1]);
+    nthreads = atoi(argv[2]);
     
+    
+    printf("%lld termos, %d threads \n", terms, nthreads);
+    montecarlo_threads(terms, nthreads);
+   
     return 0;
 }
 
