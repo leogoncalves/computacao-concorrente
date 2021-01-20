@@ -4,15 +4,12 @@ Para executar a aplicação, basta clonar o repositório, ir até a pasta lab-04
 
 > $ make
 
-A execução ira retornar uma saída semelhante a
+Dois arquivos serão compilados:
 
-```
-gcc lab.c -o main -Wall -lpthread
-1 - tudo bem?
-2 - bom dia!
-3 - até mais!
-4 - boa tarde!
-Fim
-```
+- without_priority
+- writer_priority
 
-Onde primeiro imprimimos o conjunto [1,2] e depois o conjunto [3,4]. Os itens de cada conjunto podem trocar de lugar entre si.
+Cada um deles recebe 3 parâmetros na entrada: A quantidade de elementos, o número de threads de leitura e o número de threads de escrita
+Então, para executar, faça algo como:
+
+> $ ./without_priority [quantidade de elementos] [threads leitoras] [threads escritoras]
