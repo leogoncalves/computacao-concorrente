@@ -25,14 +25,19 @@ void *writers(void* args);
 void fillArrayZeros(int *array);
 
 int main(int argc, char *argv[]) {
+    if(argc < 3) {
+        printf("Faltam argumentos. Informe: \n - A quantidade de elementos \n - Quantidades de threads leitoras \n - Quantidades de threads escritoras \n");
+        exit(-1);
+    }
+
     // Quantidade de elementos no array
-    ARRAY_SIZE = 10;
+    ARRAY_SIZE = atoi(argv[1]);
 
     // Quantidade de threads leitoras
-    reader_threads = 5;
+    reader_threads = atoi(argv[2]);
 
     // quantidade de threads escritoras 
-    writer_threads = 5;
+    writer_threads = atoi(argv[3]);
 
     // Total de threads no programa
     int total_threads = reader_threads + writer_threads;
