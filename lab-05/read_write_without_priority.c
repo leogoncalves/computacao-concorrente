@@ -3,14 +3,22 @@
 #include <stdlib.h>
 
 pthread_mutex_t mutex;
+pthread_cond_t cond_writer, cond_reader;
 int ARRAY_SIZE;
 int reader_threads;
 int writer_threads;
+int reader = 0;
+int writer = 0;
 
 typedef struct {
     int tid;    
     int* array;
 } thread_arguments;
+
+void writeUp();
+void writeDown();
+void readUp();
+void readDown();
 
 void *readers(void* args);
 void *writers(void* args);
@@ -90,40 +98,78 @@ int main(int argc, char *argv[]) {
 
 
 void *readers(void* args) {
-    thread_arguments *params = (thread_arguments*) args;
-    int id = params->tid;
-    int *array = params->array;
-    int sum = 0;
-    printf("Leitura da thread %d: \n", id);
-    for(int i = 0; i < ARRAY_SIZE; i++) {        
-        printf("%d ", array[i]);
-        sum += array[i];
+    while(1){
+        readUp();
+        thread_arguments *params = (thread_arguments*) args;
+        int id = params->tid;
+        int *array = params->array;
+        int sum = 0;
+        printf("Leitura da thread %d: \n", id);
+        for(int i = 0; i < ARRAY_SIZE; i++) {        
+            printf("%d ", array[i]);
+            sum += array[i];
+        }
+        printf("\nMédia dos valores: %lf\n\n", (1.0 * sum)/ARRAY_SIZE);
+        readDown();
+        pthread_exit(NULL);
     }
-    printf("\nMédia dos valores: %lf\n\n", (1.0 * sum)/ARRAY_SIZE);
-    pthread_exit(NULL);
 }
 
 void *writers(void* args) {
-    pthread_mutex_lock(&mutex);
-    thread_arguments *params = (thread_arguments*) args;
-    int id = params->tid;
-    int *array = params->array;
-    
-    printf("Escrevemos com a thread %d \n", id);
-    
-    array[0] = id;
-    array[ARRAY_SIZE - 1] = id;
-    for(int i = 1; i < ARRAY_SIZE - 1; i++) {        
-        array[i] = id * 2;
+    while(1){
+        writeUp();
+        thread_arguments *params = (thread_arguments*) args;
+        int id = params->tid;
+        int *array = params->array;
         
+        printf("Escrevemos com a thread %d \n", id);
+        
+        array[0] = id;
+        array[ARRAY_SIZE - 1] = id;
+        for(int i = 1; i < ARRAY_SIZE - 1; i++) {        
+            array[i] = id * 2;
+            
+        }
+        writeDown();
+        pthread_exit(NULL);
     }
-    
-    pthread_mutex_unlock(&mutex);
-    pthread_exit(NULL);
 }
 
 void fillArrayZeros(int *array){
     for(int i = 0; i < ARRAY_SIZE; i++) {        
         array[i] = 0;
     }
+}
+
+
+void writeUp(){
+    pthread_mutex_lock(&mutex);
+    while((reader > 0) || (writer > 0)){
+        pthread_cond_wait(&cond_writer, &mutex);        
+    }
+    writer++;
+    pthread_mutex_unlock(&mutex);
+}
+void writeDown(){
+    pthread_mutex_lock(&mutex);
+    writer--;
+    pthread_cond_signal(&cond_writer);
+    pthread_cond_broadcast(&cond_reader);
+    pthread_mutex_unlock(&mutex);
+}
+void readUp(){
+    pthread_mutex_lock(&mutex);
+    while(writer > 0) {
+        pthread_cond_wait(&cond_reader, &mutex);
+    }
+    reader++;
+    pthread_mutex_unlock(&mutex);
+}
+void readDown(){
+    pthread_mutex_lock(&mutex);
+    reader--;
+    if(reader == 0) {
+        pthread_cond_signal(&cond_writer);
+    }
+    pthread_mutex_unlock(&mutex);
 }
