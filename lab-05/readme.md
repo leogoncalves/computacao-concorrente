@@ -1,4 +1,4 @@
-# Variávies de condição e mutex
+# Problema do leitor escritor
 
 Para executar a aplicação, basta clonar o repositório, ir até a pasta lab-04 e executar em um shell unix
 
