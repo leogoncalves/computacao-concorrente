@@ -110,7 +110,7 @@ void *readers(void* args) {
         pthread_mutex_lock(&mutexA);
         read_counter++;
         if(read_counter == 1) {
-            sem_wait(&writer);
+            sem_wait(&write);
         }
         pthread_mutex_unlock(&mutexA);
         sem_post(&read);
