@@ -24,6 +24,11 @@ void fillArrayZeros(int *array);
 
 int main(int argc, char *argv[]) {
 
+    if(argc < 3) {
+        printf("Faltam argumentos. Informe: \n - A quantidade de elementos \n - Quantidades de threads leitoras \n - Quantidades de threads escritoras \n");
+        exit(-1);
+    }
+
     // Inicializa variável de condição
     pthread_mutex_init(&mutexA, NULL);
 
@@ -36,13 +41,13 @@ int main(int argc, char *argv[]) {
     sem_init(&write, 0, 1);
 
     // Quantidade de elementos no array
-    ARRAY_SIZE = 10;
+    ARRAY_SIZE = atoi(argv[1]);
 
     // Quantidade de threads leitoras
-    reader_threads = 5;
+    reader_threads = atoi(argv[2]);
 
     // quantidade de threads escritoras 
-    writer_threads = 5;
+    writer_threads = atoi(argv[3]);
 
     // Total de threads no programa
     int total_threads = reader_threads + writer_threads;
@@ -129,7 +134,7 @@ void *readers(void* args) {
         pthread_mutex_lock(&mutexA);
         read_counter--;
         if(read_counter == 0) {
-            sem_post(&read);
+            sem_post(&write);
         }
         pthread_mutex_unlock(&mutexA);
         pthread_exit(NULL);
@@ -141,7 +146,7 @@ void *writers(void* args) {
         pthread_mutex_lock(&mutexB);
         writer_counter++;
         if(writer_counter == 1) {
-            sem_wait(&write);
+            sem_wait(&read);
         }
         pthread_mutex_unlock(&mutexB);
 
@@ -163,7 +168,7 @@ void *writers(void* args) {
         pthread_mutex_lock(&mutexB);
         writer_counter--;
         if(writer_counter == 0) {
-            sem_post(&write);
+            sem_post(&read);
         }
         pthread_mutex_unlock(&mutexB);
         
