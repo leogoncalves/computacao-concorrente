@@ -8,7 +8,11 @@ public class Vetor {
   }
 
   public Vetor(int n) {
-    this.vetor = new ArrayList<Integer>(n);      
+    this.vetor = Arrays.asList(new Integer[n]);
+    for(int i = 0; i < n; i++) {
+      this.vetor.set(i, 0);
+    } 
+    
   }
 
   public int getItem(int idx) {
@@ -16,7 +20,7 @@ public class Vetor {
   }
 
   public void setItem(int idx, int item) {
-    this.vetor.add(idx, item);
+    this.vetor.set(idx, item);
   }
 
   public void populaVetor(int n){

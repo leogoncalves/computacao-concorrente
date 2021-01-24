@@ -1,8 +1,8 @@
 import java.util.*;
 class Main {
 	public static void main(String[] args) {
-    int numberOfElements = 10;
-    int numberOfThreads = 4;
+    int numberOfElements = 20;
+    int numberOfThreads = 3;
 		Vetor A = new Vetor();
     Vetor B = new Vetor();
     Vetor C = new Vetor(numberOfElements);
