@@ -36,7 +36,6 @@ class Buffer {
         System.out.println("Thread Consumidora " + tid + " chegou, mas o buffer está vazio");
         wait();
       }
-      this.printElements();
       int removed = this.buffer.take();
       System.out.println("Thread Consumidora " + tid + " removeu " + removed);
       System.out.println("Novo estado do buffer");
