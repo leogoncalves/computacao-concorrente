@@ -71,12 +71,21 @@ void make_write(int tid, int* array, int array_size);
 */
 void delay();
 
-int main() {
+int main(int argc, char *argv[]) {
+    
     initializeSemaphores();
-    int thread_readers = 4;
-    int thread_writers = 8;    
+    if(argc < 3) {
+        printf("Faltam argumentos. Informe: \n");
+        printf("- Quantidade de threads leitoras \n");
+        printf("- Quantidade de threads escritoas \n");
+        printf("- Tamanho do buffer \n");
+        printf("- Todos os elementos devem ser inteiros \n");
+        exit(-1);
+    }
+    int thread_readers = atoi(argv[1]);
+    int thread_writers = atoi(argv[2]);
+    int array_size = atoi(argv[3]);
     int total_threads = thread_readers + thread_writers;
-    int array_size = 20;
     
 
     pthread_t *threads = (pthread_t*) malloc(total_threads * sizeof(pthread_t));
