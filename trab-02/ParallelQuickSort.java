@@ -3,9 +3,20 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ParallelQuickSort {
+  
+  /**
+   * 
+  */
   private static final Integer NTHREADS = Runtime.getRuntime().availableProcessors();
+
+  /**
+   *
+  */
   private static Executor pool = Executors.newFixedThreadPool(NTHREADS);
 
+  /**
+   * @param array
+  */
   public static void quicksort(Integer[] array) {
     final AtomicInteger count = new AtomicInteger(1);
     pool.execute(new QuickSortRunnable(array, 0, array.length - 1, count));
@@ -18,12 +29,18 @@ public class ParallelQuickSort {
     }
   }
 
+  /**
+   *
+  */
   public static class QuickSortRunnable implements Runnable {
     private final Integer[] array;
     private final Integer begin;
     private final Integer end;
     private final AtomicInteger count;
 
+    /**
+    *
+    */
     public QuickSortRunnable(Integer[] array, Integer begin, Integer end, AtomicInteger count) {
       this.array = array;
       this.begin = begin;
@@ -31,6 +48,9 @@ public class ParallelQuickSort {
       this.count = count;
     }
 
+    /**
+    *
+    */
     @Override
     public void run() {
       quicksort(begin, end);
@@ -41,6 +61,9 @@ public class ParallelQuickSort {
       }
     }
 
+    /**
+    *
+    */
     private void quicksort(Integer begin, Integer end) {
       if (begin < end) {
         Integer index = partition(begin, end);
@@ -55,6 +78,9 @@ public class ParallelQuickSort {
       }
     }
 
+    /**
+    *
+    */
     private Integer partition(Integer begin, Integer end) {
       Integer pivot = array[end];
       Integer index = begin;
@@ -68,6 +94,9 @@ public class ParallelQuickSort {
       return index;
     }
 
+    /**
+    *
+    */
     private void swap(Integer a, Integer b) {
       Integer value = array[a];
       array[a] = array[b];

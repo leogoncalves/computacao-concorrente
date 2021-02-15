@@ -35,15 +35,9 @@ class Main {
     }
   }
 
-  public static int[] createRandomIntegerArray(int size) {
-    int[] array = new int[size];
-    Random random = new Random();
-    for (int i = 0; i < array.length; i++) {
-      array[i] = random.nextInt(100);
-    }
-    return array;
-  }
-
+  /**
+   *
+  */
   public static Integer[] createRandomIntegerArrayInteger(Integer size) {
     Integer[] array = new Integer[size];
     Random random = new Random();

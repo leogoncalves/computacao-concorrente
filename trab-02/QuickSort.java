@@ -1,5 +1,11 @@
+/**
+ *
+*/
 class QuickSort {
-  
+
+  /**
+   *
+  */ 
   int partition(Integer array[], int begin, int end){
     int pivot = array[end];
     int i = begin - 1;
@@ -17,6 +23,9 @@ class QuickSort {
     return i + 1;
   }
 
+  /**
+   *
+  */
   void sort(Integer array[], int begin, int end) {
     if(begin < end) {
       int partition = partition(array, begin, end);
