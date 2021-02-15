@@ -1,0 +1,164 @@
+
+1 threads, 1000 elementos
+Tempo de execução do algoritmo sequencial (em segundos): PT0.000625614S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.005244314S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.001226528S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.001535115S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.000159528S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.000386303S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.000165864S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.000578881S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.000187834S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.000740526S
+Arrays são iguais
+
+
+1 threads, 100000 elementos
+Tempo de execução do algoritmo sequencial (em segundos): PT0.034029735S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.06443608S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.020091775S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.048343935S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.020485207S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.042384514S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.01559583S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.032508515S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.016148392S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.026305461S
+Arrays são iguais
+
+
+1 threads, 10000000 elementos
+Tempo de execução do algoritmo sequencial (em segundos): PT4.304373575S
+Tempo de execução do algoritmo paralelo (em segundos): PT6.337187162S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT4.015262137S
+Tempo de execução do algoritmo paralelo (em segundos): PT6.535116856S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT3.978945611S
+Tempo de execução do algoritmo paralelo (em segundos): PT6.032971033S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT3.965744962S
+Tempo de execução do algoritmo paralelo (em segundos): PT6.452883311S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT4.27361615S
+Tempo de execução do algoritmo paralelo (em segundos): PT6.437611586S
+Arrays são iguais
+
+=======================================================================
+
+2 threads, 1000 elementos
+
+Tempo de execução do algoritmo sequencial (em segundos): PT0.000720458S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.003890525S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.000181161S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.002631935S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.000190015S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.001407623S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.000188305S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.001317881S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.000302954S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.001138751S
+Arrays são iguais
+
+
+2 threads, 100000 elementos
+Tempo de execução do algoritmo sequencial (em segundos): PT0.034871449S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.048833215S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.019532587S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.027531102S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.020226562S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.031485463S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.017136495S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.019836728S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.015075557S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.017781863S
+Arrays são iguais
+
+
+2 threads, 10000000 elementos
+Tempo de execução do algoritmo sequencial (em segundos): PT4.214408109S
+Tempo de execução do algoritmo paralelo (em segundos): PT3.606449989S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT3.824201431S
+Tempo de execução do algoritmo paralelo (em segundos): PT3.428862988S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT3.578525345S
+Tempo de execução do algoritmo paralelo (em segundos): PT3.412402345S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT4.391636732S
+Tempo de execução do algoritmo paralelo (em segundos): PT3.758251111S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT3.938449637S
+Tempo de execução do algoritmo paralelo (em segundos): PT3.464418548S
+Arrays são iguais
+
+=======================================================================
+4 threads, 1000 elementos
+Tempo de execução do algoritmo sequencial (em segundos): PT0.000757023S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.003882895S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.000215941S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.002229441S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.000180272S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.001645792S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.000169206S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.001167728S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.000200029S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.001235791S
+Arrays são iguais
+
+4 threads, 100000 elementos
+
+Tempo de execução do algoritmo sequencial (em segundos): PT0.033871808S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.052194367S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.020931914S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.024344572S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.018927263S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.023790918S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.018155352S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.011700196S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT0.015306139S
+Tempo de execução do algoritmo paralelo (em segundos): PT0.015297263S
+Arrays são iguais
+
+4 threads, 10000000 elementos
+Tempo de execução do algoritmo sequencial (em segundos): PT4.133161326S
+Tempo de execução do algoritmo paralelo (em segundos): PT2.585003714S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT3.572952164S
+Tempo de execução do algoritmo paralelo (em segundos): PT2.330294191S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT3.900583756S
+Tempo de execução do algoritmo paralelo (em segundos): PT2.463886798S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT3.625496671S
+Tempo de execução do algoritmo paralelo (em segundos): PT2.248264736S
+Arrays são iguais
+Tempo de execução do algoritmo sequencial (em segundos): PT3.770902012S
+Tempo de execução do algoritmo paralelo (em segundos): PT2.337391817S
+Arrays são iguais
+
+=========================================================================
