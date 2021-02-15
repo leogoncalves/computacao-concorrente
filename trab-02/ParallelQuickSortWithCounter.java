@@ -1,17 +1,18 @@
+
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
 
-public class ParallelQuickSort {
+public class ParallelQuickSortWithCounter {
   private static final Integer NTHREADS = Runtime.getRuntime().availableProcessors();
   private static Executor pool = Executors.newFixedThreadPool(NTHREADS);
-
-  public static void quicksort(Integer[] array) {
-    final AtomicInteger count = new AtomicInteger(1);
-    pool.execute(new QuickSortRunnable(array, 0, array.length - 1, count));
+  final static Counter counter = new Counter();
+  
+  public static void quicksort(Integer[] array) {    
+    pool.execute(new QuickSortRunnable(array, 0, array.length - 1, counter));
     try {
-      synchronized (count) {
-        count.wait();
+      synchronized (counter) {
+        counter.wait();
       }
     } catch (InterruptedException e) {
       e.printStackTrace();
@@ -22,21 +23,22 @@ public class ParallelQuickSort {
     private final Integer[] array;
     private final Integer begin;
     private final Integer end;
-    private final AtomicInteger count;
+    private final Counter counter;
 
-    public QuickSortRunnable(Integer[] array, Integer begin, Integer end, AtomicInteger count) {
+    public QuickSortRunnable(Integer[] array, Integer begin, Integer end, Counter counter) {
       this.array = array;
       this.begin = begin;
       this.end = end;
-      this.count = count;
+      this.counter = counter;
     }
 
     @Override
     public void run() {
       quicksort(begin, end);
-      synchronized (count){ 
-        if (count.getAndDecrement() == 1) {
-          count.notify();
+      synchronized (counter) {
+        counter.decrement();
+        if (counter.getValue() == 1) {
+          counter.notify();
         }
       }
     }
@@ -44,13 +46,13 @@ public class ParallelQuickSort {
     private void quicksort(Integer begin, Integer end) {
       if (begin < end) {
         Integer index = partition(begin, end);
-        if (count.get() >= NTHREADS) {
+        if (counter.getValue() >= NTHREADS) {
           quicksort(begin, index - 1);
           quicksort(index + 1, end);
         } else {
-          count.getAndAdd(2);
-          pool.execute(new QuickSortRunnable(array, begin, index - 1, count));
-          pool.execute(new QuickSortRunnable(array, index + 1, end, count));
+          counter.increment(2);
+          pool.execute(new QuickSortRunnable(array, begin, index - 1, counter));
+          pool.execute(new QuickSortRunnable(array, index + 1, end, counter));
         }
       }
     }
