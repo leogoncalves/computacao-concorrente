@@ -3,7 +3,17 @@ import java.util.Random;
 import java.time.Instant;
 import java.time.Duration;
 
+/** 
+* Classe principal da aplicação. Utilizada para a execução da comparação entre os algoritmos
+* com recursão simples e com múltiplas threads.
+*/
 class Main {
+
+  /**
+  * Método principal da aplicação. Fazemos 5 execuções de ordenação de um array de 
+  * 10^7 elementos inteiros gerados de forma pseudoaleatoria. Cada execução possui uma 
+  * nova tomada de tempo
+  */
   public static void main(String[] args) {
     for(int i = 0; i < 5; i++) {
         Integer array[] = createRandomIntegerArrayInteger(10000000);
@@ -36,7 +46,7 @@ class Main {
   }
 
   /**
-   *
+   * @param size O tamanho do array que será gerado
   */
   public static Integer[] createRandomIntegerArrayInteger(Integer size) {
     Integer[] array = new Integer[size];

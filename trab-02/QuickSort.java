@@ -1,10 +1,15 @@
 /**
- *
+ * QuickSort - Classe para executar o método de ordenação 
+ * quicksort utilizando chamadas recursivas.
 */
 class QuickSort {
 
   /**
-   *
+  * @param array Vetor de inteiros que será ordenado
+  * @param begin Posição inicial do array
+  * @param end Posição final do array
+  *
+  * Calcula uma nova partição e define o novo pivo.
   */ 
   int partition(Integer array[], int begin, int end){
     int pivot = array[end];
@@ -24,7 +29,7 @@ class QuickSort {
   }
 
   /**
-   *
+   * Método para fazer a chamada recursiva do método quicksort
   */
   void sort(Integer array[], int begin, int end) {
     if(begin < end) {
