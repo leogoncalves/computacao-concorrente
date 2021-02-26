@@ -8,13 +8,45 @@ int three_equals_values (int a, int b, int c);
 void find_continous_sequence_of_same_value(int* array, int array_size);
 void find_number_of_match_sequence(int *array, int array_size);
 
-int main(void) {
-    int array_size = 30;
-    int example[] = {30, 1, 2, 3, 1, 1, 1, 1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, 3, 3, 3, 0, 1, 2, 3, 4, 5, 0};    
-    find_identical_value_sequence((int *)example, array_size); // 11 7 5
-    find_continous_sequence_of_same_value((int *)example, array_size); // 5
-    find_number_of_match_sequence((int *)example, array_size);
+void read_from_binary_file(char* filename, int* buffer, long int buffer_size, int ignore_first_element);
+long int get_size(char* filename);
+void show_buffer(int* array, long int array_size);
 
+int main(int argc, char *argv[]) {
+
+    char* filenameControlTest = "assets/input.bin";   
+    char* filenameRandomTest = "assets/random_input.bin";
+    int random_test = 1;
+    if(random_test) {
+        /*
+            Definir estratégia para o tamanho padrão 
+            do buffer baseado na quantidade de elementos
+            informado no arquivo
+        */
+        long int size = get_size(filenameRandomTest);
+        int* buffer = (int*) malloc(size * sizeof(int));
+        
+        read_from_binary_file(filenameRandomTest, buffer, size, 1);
+
+        find_identical_value_sequence(buffer, size); // 11 7 5
+        find_continous_sequence_of_same_value(buffer, size); // 5
+        find_number_of_match_sequence(buffer, size);
+    } else {
+        /*
+            Definir estratégia para o tamanho padrão 
+            do buffer baseado na quantidade de elementos
+            informado no arquivo
+        */
+        long int size = get_size(filenameControlTest);
+        int* buffer = (int*) malloc(size * sizeof(int));
+        
+        read_from_binary_file(filenameControlTest, buffer, size, 1);
+
+        find_identical_value_sequence(buffer, size); // 11 7 5
+        find_continous_sequence_of_same_value(buffer, size); // 5
+        find_number_of_match_sequence(buffer, size);
+
+    }
 }
 
 /*
@@ -112,3 +144,67 @@ void find_number_of_match_sequence(int *array, int array_size) {
         }
     }
 }
+
+/*
+    Realiza a leitura de um arquivo binario
+    1 int = 4 bytes
+
+    @param filename Caminho relativo para o arquivo que será lido
+    @buffer Vetor de inteiros que será utilizado como buffer
+*/
+void read_from_binary_file(char* filename, int* buffer, long int buffer_size, int ignore_first_element) {    
+    FILE *file = NULL;
+    
+    file = fopen(filename, "rb");
+    
+    if(!file) {
+        perror("fopen: Falha ao abrir o arquivo");
+        exit(EXIT_FAILURE);
+    }
+    
+    if(ignore_first_element) {        
+        fseek(file, sizeof(long int), 1);        
+    }
+
+    for(int i = 0; i < buffer_size; i++) {
+        fread(&buffer[i], sizeof(int), 1, file);
+    }
+    // show_buffer(buffer, buffer_size);
+
+    fclose(file);
+}
+
+
+long int get_size(char* filename) {
+    
+    FILE *file = NULL;
+
+    file = fopen(filename, "rb");
+    if(!file) {
+        perror("fopen: Falha ao abrir o arquivo");
+        exit(EXIT_FAILURE);
+    }
+
+    long int size;    
+    fread(&size, sizeof(long int), 1, file);
+    // printf("size: %ld\n", size);
+    fclose(file);
+
+    return size;
+}
+
+
+/*  
+    Método auxiliar para imprimir um vetor de inteiros
+
+    @param array Vetor de inteiros
+    @param array_size Tamanhho do vetor de inteiros
+*/
+void show_buffer(int* array, long int array_size) {
+    
+    for(int i = 0; i < array_size; i++) {
+        printf("%d ", *(array + i));
+    }
+    printf("\n");
+}
+    
