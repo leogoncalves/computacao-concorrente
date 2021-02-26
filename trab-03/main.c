@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <pthread.h>
 
-#define DEBUG 0
+#define DEBUG 1
 
 void find_identical_value_sequence(int* array, int array_size);
 int three_equals_values (int a, int b, int c);
@@ -66,22 +66,28 @@ int main(int argc, char *argv[]) {
         /*
             Buffer que será utilizado pelas threads
         */
-        int* bufferT = NULL;
+        
 
         int i = 1;
+        int new_size;
         while(i <= 3) {
             /*
-            Aloca memória dinamicamente, a 
-            depender do tamanho do bloco
-            necessário
-        */
-            bufferT = (int*) realloc(bufferT, i * 10 * sizeof(int));
+                Aloca memória dinamicamente, a 
+                depender do tamanho do bloco
+                necessário
+            */
+            // int* bufferT = NULL;
+            new_size =  10;
+            int* bufferT = (int*) malloc(new_size * sizeof(int));
+            // bufferT = (int*) realloc(bufferT, new_size * sizeof(int));
         
-            read_from_binary_file(filenameControlTest, bufferT, size, 1);
-            find_identical_value_sequence(bufferT, size);
-            find_continous_sequence_of_same_value(bufferT, size);
-            find_number_of_match_sequence(bufferT, size);
+            read_from_binary_file(filenameControlTest, bufferT, new_size, 1);
+            find_identical_value_sequence(bufferT, new_size);
+            find_continous_sequence_of_same_value(bufferT, new_size);
+            find_number_of_match_sequence(bufferT, new_size);
             i += 1;
+            free(bufferT);
+            
         }
     }
 }
