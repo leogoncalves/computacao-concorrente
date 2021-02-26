@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <pthread.h>
 
 #define DEBUG 0
 
@@ -8,22 +9,34 @@ int three_equals_values (int a, int b, int c);
 void find_continous_sequence_of_same_value(int* array, int array_size);
 void find_number_of_match_sequence(int *array, int array_size);
 
-void read_from_binary_file(char* filename, int* buffer, long int buffer_size, int ignore_first_element);
-long int get_size(char* filename);
-void show_buffer(int* array, long int array_size);
+void read_from_binary_file(char* filename, int* buffer, long long int buffer_size, int ignore_first_element);
+long long int get_size(char* filename);
+void show_buffer(int* array, long long int array_size);
 
 int main(int argc, char *argv[]) {
 
-    char* filenameControlTest = "assets/input.bin";   
-    char* filenameRandomTest = "assets/random_input.bin";
+    char* filenameControlTest = "input.bin";   
+    char* filenameRandomTest = "random_input.bin";
     int random_test = 1;
-    if(random_test) {
+    if(!random_test) {
         /*
             Definir estratégia para o tamanho padrão 
             do buffer baseado na quantidade de elementos
             informado no arquivo
         */
-        long int size = get_size(filenameRandomTest);
+        long long int size = get_size(filenameRandomTest);
+
+        /*
+            Tamanho do Bloco
+        */
+        long long int M;
+
+        /*
+            Tamanho do buffer a ser utilizado pela aplicação
+        */
+        long long int N;
+
+
         int* buffer = (int*) malloc(size * sizeof(int));
         
         read_from_binary_file(filenameRandomTest, buffer, size, 1);
@@ -37,15 +50,39 @@ int main(int argc, char *argv[]) {
             do buffer baseado na quantidade de elementos
             informado no arquivo
         */
-        long int size = get_size(filenameControlTest);
-        int* buffer = (int*) malloc(size * sizeof(int));
+        long long int size = get_size(filenameRandomTest);
+
+        /*
+            Tamanho do Bloco
+        */
+        long long int M;
+
+        /*
+            Tamanho do buffer a ser utilizado pela aplicação
+        */
+        long long int N;
+
+
+        /*
+            Buffer que será utilizado pelas threads
+        */
+        int* bufferT = NULL;
+
+        int i = 1;
+        while(i <= 3) {
+            /*
+            Aloca memória dinamicamente, a 
+            depender do tamanho do bloco
+            necessário
+        */
+            bufferT = (int*) realloc(bufferT, i * 10 * sizeof(int));
         
-        read_from_binary_file(filenameControlTest, buffer, size, 1);
-
-        find_identical_value_sequence(buffer, size); // 11 7 5
-        find_continous_sequence_of_same_value(buffer, size); // 5
-        find_number_of_match_sequence(buffer, size);
-
+            read_from_binary_file(filenameControlTest, bufferT, size, 1);
+            find_identical_value_sequence(bufferT, size);
+            find_continous_sequence_of_same_value(bufferT, size);
+            find_number_of_match_sequence(bufferT, size);
+            i += 1;
+        }
     }
 }
 
@@ -152,7 +189,7 @@ void find_number_of_match_sequence(int *array, int array_size) {
     @param filename Caminho relativo para o arquivo que será lido
     @buffer Vetor de inteiros que será utilizado como buffer
 */
-void read_from_binary_file(char* filename, int* buffer, long int buffer_size, int ignore_first_element) {    
+void read_from_binary_file(char* filename, int* buffer, long long int buffer_size, int ignore_first_element) {    
     FILE *file = NULL;
     
     file = fopen(filename, "rb");
@@ -163,19 +200,22 @@ void read_from_binary_file(char* filename, int* buffer, long int buffer_size, in
     }
     
     if(ignore_first_element) {        
-        fseek(file, sizeof(long int), 1);        
+        fseek(file, sizeof(long long int), 1);        
     }
 
     for(int i = 0; i < buffer_size; i++) {
         fread(&buffer[i], sizeof(int), 1, file);
     }
-    // show_buffer(buffer, buffer_size);
+    
+    if(DEBUG) {
+        show_buffer(buffer, buffer_size);
+    }
 
     fclose(file);
 }
 
 
-long int get_size(char* filename) {
+long long int get_size(char* filename) {
     
     FILE *file = NULL;
 
@@ -185,8 +225,8 @@ long int get_size(char* filename) {
         exit(EXIT_FAILURE);
     }
 
-    long int size;    
-    fread(&size, sizeof(long int), 1, file);
+    long long int size;    
+    fread(&size, sizeof(long long int), 1, file);
     // printf("size: %ld\n", size);
     fclose(file);
 
@@ -200,7 +240,7 @@ long int get_size(char* filename) {
     @param array Vetor de inteiros
     @param array_size Tamanhho do vetor de inteiros
 */
-void show_buffer(int* array, long int array_size) {
+void show_buffer(int* array, long long int array_size) {
     
     for(int i = 0; i < array_size; i++) {
         printf("%d ", *(array + i));
