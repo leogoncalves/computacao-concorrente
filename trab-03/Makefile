@@ -1,13 +1,13 @@
-all: run
+all: build
 
-run: build
-	@./main
+build: clean create_binary_file main
 
-build: 
-	gcc main.c -o main -Wall -lpthread
+main: clean
+	gcc -g main.c -o main -Wall -lpthread -lm
 
-make_binary:
+create_binary_file: clean
 	gcc create_binary_file.c -o create_binary_file -Wall
 
-create_binary_file: make_binary
-	@./create_binary_file 1
+clean:
+	rm -f main create_binary_file input.bin random_input.bin
+
