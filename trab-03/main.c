@@ -22,24 +22,24 @@ void read_from_binary_file(char* filename, int* buffer, long long int buffer_siz
 void find_identical_value_sequence(int* array, int array_size, Response* response);
 void find_continous_sequence_of_same_value(int* array, int array_size, Response* response);
 void find_number_of_match_sequence(int *array, int array_size, Response* response);
-
+void debug_binary_file(char* filename);
+Response* initialize_response();
 
 int main(int argc, char *argv[]) {
 
-    Response *response = (Response*) malloc(sizeof(Response));
-    for(int k = 0; k < 3; k++)
-        response->sequence_of_identical_values[k] = 0;
-    response->amount_triples = 0;
-    response->occurrences_of_sequence = 0;
+    Response *response = initialize_response();
 
-    char* filenameControlTest = "input.bin";   
+    // char* filenameControlTest = "input.bin";   
+    char* filenameControlTest = "random_input.bin";   
     // char* filenameRandomTest = "random_input.bin";
     
     /*
-        Tamanho do arqui 
+        Tamanho do arquivo
     */
     long long int size = get_size(filenameControlTest);
-
+    if(DEBUG) {
+        debug_binary_file(filenameControlTest);
+    }
     /*
         Tamanho do Bloco (chunk do arquivo)
         1 KB = 1024 bytes
@@ -56,14 +56,15 @@ int main(int argc, char *argv[]) {
     */
     long long int N = 1024;
 
-    int i = 1;
     
     long long int offset = 0;
     long long int buffer_size = 20;
     int* bufferT = (int*) malloc(buffer_size * sizeof(int));
     set_buffer(bufferT, buffer_size, -1);
     
-    while(i <= 2) {
+    int i = 0;
+    while(i != 2) {
+        printf("ITER %d\n", i);
         /*
             Aloca memória dinamicamente, a 
             depender do tamanho do bloco
@@ -301,4 +302,44 @@ void set_buffer(int* array, long long int array_size, int value) {
     for(int i = 0; i < array_size; i++) {
         array[i] = value;
     }
+}
+
+Response* initialize_response() {
+    Response *response = (Response*) malloc(sizeof(Response));
+    for(int i = 0; i < 3; i++)
+        response->sequence_of_identical_values[i] = 0;
+    response->amount_triples = 0;
+    response->occurrences_of_sequence = 0;
+
+    return response;
+}
+
+void debug_binary_file(char* filename) {
+    printf("[DEBUG] ARQUIVO BINARIO GERADO\n");
+    FILE *file = NULL;
+    
+    file = fopen(filename, "rb");
+    
+    if(!file) {
+        perror("fopen: Falha ao abrir o arquivo");
+        exit(EXIT_FAILURE);
+    }
+
+    /*
+        Desconsidera o primeiro elemento lido do arquiv
+        Ele é o tamanho da entrada e não estamos querendo
+        nada com ele
+    */
+    long long int size = get_size(filename);
+    int *buffer = (int*) malloc(size * sizeof(int));
+    
+    fseek(file, sizeof(long long int), 1);
+
+    for(long long int i = 0; i < size; i++) {
+        fread(&buffer[i], sizeof(int), 1, file);
+    }
+    show_buffer(buffer, size);
+    printf("\n");
+
+    fclose(file);
 }
