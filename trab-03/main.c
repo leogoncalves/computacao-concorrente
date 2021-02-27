@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
+#include <math.h>
 
 #define DEBUG 1
 
@@ -9,86 +10,60 @@ int three_equals_values (int a, int b, int c);
 void find_continous_sequence_of_same_value(int* array, int array_size);
 void find_number_of_match_sequence(int *array, int array_size);
 
-void read_from_binary_file(char* filename, int* buffer, long long int buffer_size, int ignore_first_element);
+void read_from_binary_file(char* filename, int* buffer, long long int buffer_size, long long int offset);
 long long int get_size(char* filename);
 void show_buffer(int* array, long long int array_size);
 
 int main(int argc, char *argv[]) {
 
     char* filenameControlTest = "input.bin";   
-    char* filenameRandomTest = "random_input.bin";
-    int random_test = 1;
-    if(!random_test) {
+    // char* filenameRandomTest = "random_input.bin";
+    
+    /*
+        Definir estratégia para o tamanho padrão 
+        do buffer baseado na quantidade de elementos
+        informado no arquivo
+    */
+    // long long int size = get_size(filenameControlTest);
+
+    /*
+        Tamanho do Bloco
+    */
+    // long long int M;
+
+    /*
+        Tamanho do buffer a ser utilizado pela aplicação
+    */
+    // long long int N;
+
+
+    /*
+        Buffer que será utilizado pelas threads
+    */
+    
+    // long long int total_blocks = ceil(size / M);
+
+
+    int i = 0;
+    while(i < 3) {
         /*
-            Definir estratégia para o tamanho padrão 
-            do buffer baseado na quantidade de elementos
-            informado no arquivo
-        */
-        long long int size = get_size(filenameRandomTest);
-
-        /*
-            Tamanho do Bloco
-        */
-        long long int M;
-
-        /*
-            Tamanho do buffer a ser utilizado pela aplicação
-        */
-        long long int N;
-
-
-        int* buffer = (int*) malloc(size * sizeof(int));
+            Aloca memória dinamicamente, a 
+            depender do tamanho do bloco
+            necessário
+        */   
+        long long int offset = 0;
+        long long int buffer_size = 10;
+        int* bufferT = (int*) malloc(buffer_size * sizeof(int));
         
-        read_from_binary_file(filenameRandomTest, buffer, size, 1);
-
-        find_identical_value_sequence(buffer, size); // 11 7 5
-        find_continous_sequence_of_same_value(buffer, size); // 5
-        find_number_of_match_sequence(buffer, size);
-    } else {
-        /*
-            Definir estratégia para o tamanho padrão 
-            do buffer baseado na quantidade de elementos
-            informado no arquivo
-        */
-        long long int size = get_size(filenameRandomTest);
-
-        /*
-            Tamanho do Bloco
-        */
-        long long int M;
-
-        /*
-            Tamanho do buffer a ser utilizado pela aplicação
-        */
-        long long int N;
-
-
-        /*
-            Buffer que será utilizado pelas threads
-        */
+        offset = buffer_size*i + offset;
+        printf("offset: %lld \n", offset);
         
-
-        int i = 1;
-        int new_size;
-        while(i <= 3) {
-            /*
-                Aloca memória dinamicamente, a 
-                depender do tamanho do bloco
-                necessário
-            */
-            // int* bufferT = NULL;
-            new_size =  10;
-            int* bufferT = (int*) malloc(new_size * sizeof(int));
-            // bufferT = (int*) realloc(bufferT, new_size * sizeof(int));
+        read_from_binary_file(filenameControlTest, bufferT, buffer_size, offset);
+        find_identical_value_sequence(bufferT, buffer_size);
+        find_continous_sequence_of_same_value(bufferT, buffer_size);
+        find_number_of_match_sequence(bufferT, buffer_size);
         
-            read_from_binary_file(filenameControlTest, bufferT, new_size, 1);
-            find_identical_value_sequence(bufferT, new_size);
-            find_continous_sequence_of_same_value(bufferT, new_size);
-            find_number_of_match_sequence(bufferT, new_size);
-            i += 1;
-            free(bufferT);
-            
-        }
+        i++;
     }
 }
 
@@ -151,16 +126,13 @@ void find_continous_sequence_of_same_value(int* array, int array_size) {
     int count = 0;
     int i = 0;
     while(i < array_size) {
-        if(three_equals_values(array[i], array[i + 1], array[i + 2])) {
-            if(DEBUG) {
-                printf("%d: %d %d %d\n", i, array[i], array[i + 1], array[i + 2]);
-            }
+        if(three_equals_values(array[i], array[i + 1], array[i + 2])) {            
             count++;
             i+=2;
         }
         i += 1;
     }
-    printf("Quantidade de triplas: %d \n", count);
+    printf("Quantidade de triplas que se repetem: %d \n", count);
 }
 
 /*
@@ -195,7 +167,7 @@ void find_number_of_match_sequence(int *array, int array_size) {
     @param filename Caminho relativo para o arquivo que será lido
     @buffer Vetor de inteiros que será utilizado como buffer
 */
-void read_from_binary_file(char* filename, int* buffer, long long int buffer_size, int ignore_first_element) {    
+void read_from_binary_file(char* filename, int* buffer, long long int buffer_size, long long int offset) {
     FILE *file = NULL;
     
     file = fopen(filename, "rb");
@@ -204,10 +176,18 @@ void read_from_binary_file(char* filename, int* buffer, long long int buffer_siz
         perror("fopen: Falha ao abrir o arquivo");
         exit(EXIT_FAILURE);
     }
-    
-    if(ignore_first_element) {        
-        fseek(file, sizeof(long long int), 1);        
-    }
+
+    /*
+        Desconsidera o primeiro elemento lido do arquiv
+        Ele é o tamanho da entrada e não estamos querendo
+        nada com ele
+    */
+    fseek(file, sizeof(long long int), 1);
+
+    /*
+        Offset para posição do arquivo que queremos ler
+    */
+    fseek(file, offset * sizeof(int), 1);
 
     for(int i = 0; i < buffer_size; i++) {
         fread(&buffer[i], sizeof(int), 1, file);
@@ -233,7 +213,6 @@ long long int get_size(char* filename) {
 
     long long int size;    
     fread(&size, sizeof(long long int), 1, file);
-    // printf("size: %ld\n", size);
     fclose(file);
 
     return size;
