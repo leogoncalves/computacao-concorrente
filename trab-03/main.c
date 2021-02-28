@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include <math.h>
 
-#define DEBUG 1
+#define DEBUG 0
 
 typedef struct {
     // position | max | sequence_value
@@ -40,6 +40,7 @@ int main(int argc, char *argv[]) {
     if(DEBUG) {
         debug_binary_file(filenameControlTest);
     }
+    debug_binary_file(filenameControlTest);
     /*
         Tamanho do Bloco (chunk do arquivo)
         1 KB = 1024 bytes
@@ -58,13 +59,14 @@ int main(int argc, char *argv[]) {
 
     
     long long int offset = 0;
-    long long int buffer_size = 20;
+    long long int buffer_size = N;
     int* bufferT = (int*) malloc(buffer_size * sizeof(int));
     set_buffer(bufferT, buffer_size, -1);
     
-    int i = 0;
-    while(i != 2) {
-        printf("ITER %d\n", i);
+    long long int i = 0;
+    long long int amount_blocks = ceil(M / N);
+    printf("amount_blocks: %lld \n", amount_blocks);
+    while(i != amount_blocks) {
         /*
             Aloca memória dinamicamente, a 
             depender do tamanho do bloco
