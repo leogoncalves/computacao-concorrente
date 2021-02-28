@@ -39,19 +39,35 @@ Response* initialize_response();
 
 int main(int argc, char *argv[]) {
 
+    if(argc < 3){
+        printf("Falha ao executar o programa. Faltam argumentos. \n");
+        printf("Informe: \n");
+        printf("- Um valor para M (Tamanho do Bloco) \n");
+        printf("- Um valor para N (Tamanho do Buffer) \n");
+        printf("Ex: \n");
+        printf("$ ./main 1000 100 \n");
+        return 1;
+    }
+    /*
+        Inicializar nossa estrutura utilizada para 
+        armazenar as respostas
+    */
     Response *response = initialize_response();
+
+    /*
+        Inicializa o mutex que será utilizado
+        para controlar as nossas seções críticas
+    */
     pthread_mutex_init(&mutex, NULL);
 
-    // char* filenameControlTest = "input.bin";   
-    char* filenameControlTest = "random_input.bin";   
-    // char* filenameRandomTest = "random_input.bin";
+    char* filename = "input.bin";   
     
     /*
         Tamanho do arquivo
     */
-    long long int size = get_size(filenameControlTest);
+    long long int size = get_size(filename);
     if(DEBUG) {
-        debug_binary_file(filenameControlTest);
+        debug_binary_file(filename);
     }
     
     /*
@@ -63,25 +79,18 @@ int main(int argc, char *argv[]) {
         M = 1024 * 1024 * 1 = 1MB
 
     */
-    long long int M = 1024 * 1024 * 1;
+    long long int M = atoll(argv[1]); //1024 * 1024 * 1;
 
     /*
         Tamanho do buffer a ser utilizado pela aplicação
     */
-    long long int N = 1024;
+    long long int N = atoll(argv[2]); //1024;
 
     /*
         Variável de controle para
         offset do arquivo (posição do cursor no arquivo)
     */
     long long int offsetP = 0;
-
-    /*
-        Variável de controle para
-        offset do buffer que será usado como consumidor
-    */
-    long long int offsetT = 0;
-
 
     /*
         Tamanho do buffer definido pelo usuário
@@ -119,26 +128,32 @@ int main(int argc, char *argv[]) {
     long long int amount_blocks_T = ceil(M / N);    
     long long int j = 0;
 
-    printf("[DEBUG] amount_blocks_P: %lld\n", amount_blocks_P);
-    printf("[DEBUG] amount_blocks_T: %lld\n", amount_blocks_T);
-    // printf("[DEBUG] Offset Inicial: %lld", offsetP);
+    if(DEBUG) {
+        printf("[DEBUG] amount_blocks_P: %lld\n", amount_blocks_P);
+        printf("[DEBUG] amount_blocks_T: %lld\n", amount_blocks_T);
+        printf("[DEBUG] Offset Inicial: %lld", offsetP);
+    }
     while(i <= amount_blocks_P) {
         
-        printf("[DEBUG] Le bloco %lld do arquivo pra chunk\n", i);
+        if(DEBUG) {
+            printf("[DEBUG] Le bloco %lld do arquivo pra chunk\n", i);
+        }
         
         set_buffer(bufferP, M, -1);
-        read_from_binary_file(filenameControlTest, bufferP, M, offsetP);
+        read_from_binary_file(filename, bufferP, M, offsetP);
         
         while(j < amount_blocks_T) {
             set_buffer(bufferT, buffer_size, -1);
             
-            // printf("[DEBUG]  Le do arquivo para buffer: Bloco j =  %lld\n", j);
+            if(DEBUG) {
+                printf("[DEBUG]  Le do arquivo para buffer: Bloco j =  %lld\n", j);
+            }
             
             for(int k = 0; k < buffer_size; k++) {
                 bufferT[k] = bufferP[k + (j * buffer_size)];
             }
             
-            // show_buffer(bufferT, buffer_size);
+            show_buffer(bufferT, buffer_size);
 
             threadArguments *targs = (threadArguments *) malloc(sizeof(threadArguments));
             targs->array = bufferT;
@@ -157,6 +172,12 @@ int main(int argc, char *argv[]) {
             // Thread C
             // find_number_of_match_sequence(bufferT, buffer_size, response);
             pthread_create(&threads[2], NULL, ThreadC, (void*)(targs));
+
+            for(int z = 0; z < 3 ; z++) {
+                if(pthread_join(threads[z], NULL)) {
+                    printf("Erro: pthread_join");
+                }
+            }
             
             j++;
             
@@ -393,11 +414,11 @@ long long int get_size(char* filename) {
 void show_buffer(int* array, long long int array_size) {
     if(DEBUG) {
         printf("[DEBUG] show_buffer \n");
-    }
-    for(int i = 0; i < array_size; i++) {
-        printf("%d ", *(array + i));
-    }
-    printf("\n");
+        for(int i = 0; i < array_size; i++) {
+            printf("%d ", *(array + i));
+        }
+        printf("\n");
+    }    
 }
 
 void set_buffer(int* array, long long int array_size, int value) {
