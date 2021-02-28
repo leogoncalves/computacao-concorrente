@@ -5,12 +5,19 @@
 
 #define DEBUG 0
 
+pthread_mutex_t mutex;
 typedef struct {
     // position | max | sequence_value
     long long int sequence_of_identical_values[3];
     long long int amount_triples;
     long long int occurrences_of_sequence;
 } Response;
+
+typedef struct {
+    int *array;
+    int array_size;
+    Response* response;
+} threadArguments;
 
 int three_equals_values (int a, int b, int c);
 long long int get_size(char* filename);
@@ -23,11 +30,17 @@ void find_identical_value_sequence(int* array, int array_size, Response* respons
 void find_continous_sequence_of_same_value(int* array, int array_size, Response* response);
 void find_number_of_match_sequence(int *array, int array_size, Response* response);
 void debug_binary_file(char* filename);
+
+void* ThreadA(void *args);
+void* ThreadB(void *args);
+void* ThreadC(void *args);
+
 Response* initialize_response();
 
 int main(int argc, char *argv[]) {
 
     Response *response = initialize_response();
+    pthread_mutex_init(&mutex, NULL);
 
     // char* filenameControlTest = "input.bin";   
     char* filenameControlTest = "random_input.bin";   
@@ -125,10 +138,25 @@ int main(int argc, char *argv[]) {
                 bufferT[k] = bufferP[k + (j * buffer_size)];
             }
             
-            show_buffer(bufferT, buffer_size);
-            find_identical_value_sequence(bufferT, buffer_size, response);
-            find_continous_sequence_of_same_value(bufferT, buffer_size, response);
-            find_number_of_match_sequence(bufferT, buffer_size, response);
+            // show_buffer(bufferT, buffer_size);
+
+            threadArguments *targs = (threadArguments *) malloc(sizeof(threadArguments));
+            targs->array = bufferT;
+            targs->array_size = buffer_size;
+            targs->response = response;
+            pthread_t threads[3];
+            
+            // Thread A
+            // find_identical_value_sequence(bufferT, buffer_size, response);
+            pthread_create(&threads[0], NULL, ThreadA, (void*)(targs));
+
+            // Thread B
+            // find_continous_sequence_of_same_value(bufferT, buffer_size, response);
+            pthread_create(&threads[1], NULL, ThreadB, (void*)(targs));
+
+            // Thread C
+            // find_number_of_match_sequence(bufferT, buffer_size, response);
+            pthread_create(&threads[2], NULL, ThreadC, (void*)(targs));
             
             j++;
             
@@ -182,11 +210,15 @@ void find_identical_value_sequence(int* array, int array_size, Response* respons
         }
     }
 
+    // Início da Região crítica
+    pthread_mutex_lock(&mutex);
     if(max > response->sequence_of_identical_values[1]) {
         response->sequence_of_identical_values[0] = position;
         response->sequence_of_identical_values[1] = max;
         response->sequence_of_identical_values[2] = sequence_value;
     }
+    pthread_mutex_unlock(&mutex);
+    // Fim da Região crítica
 
     if(DEBUG) {
         printf("[DEBUG] Maior sequencia de valores identicos: \n");
@@ -232,7 +264,12 @@ void find_continous_sequence_of_same_value(int* array, int array_size, Response*
         }
         i += 1;
     }
+    // Início da Região crítica
+    pthread_mutex_lock(&mutex);
     response->amount_triples += count;
+    pthread_mutex_unlock(&mutex);
+    // Fim da Região crítica
+    
     if(DEBUG) {
         printf("[DEBUG] Quantidade de triplas que se repetem: %d \n", count);
     }
@@ -274,7 +311,11 @@ void find_number_of_match_sequence(int *array, int array_size, Response* respons
             }
         }
     }
+    // Início da Região crítica
+    pthread_mutex_lock(&mutex);
     response->occurrences_of_sequence += total_occurence;
+    pthread_mutex_unlock(&mutex);
+    // Fim da Região crítica
 }
 
 /*
@@ -403,4 +444,22 @@ void debug_binary_file(char* filename) {
     printf("\n");
 
     fclose(file);
+}
+
+void* ThreadA(void* args) {
+    threadArguments *targs = (threadArguments*) args;
+    find_identical_value_sequence(targs->array, targs->array_size, targs->response);
+    pthread_exit(NULL);
+}
+
+void* ThreadB(void* args) {
+    threadArguments *targs = (threadArguments*) args;
+    find_continous_sequence_of_same_value(targs->array, targs->array_size, targs->response);
+    pthread_exit(NULL);
+}
+
+void* ThreadC(void* args) {
+    threadArguments *targs = (threadArguments*) args;
+    find_number_of_match_sequence(targs->array, targs->array_size, targs->response);
+    pthread_exit(NULL);
 }
