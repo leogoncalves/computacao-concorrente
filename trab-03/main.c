@@ -305,7 +305,9 @@ void find_number_of_match_sequence(int *array, int array_size, Response* respons
                 break;
         }
         if(j == DEFAULT_SIZE_MATCH) {
+            pthread_mutex_lock(&mutex);
             total_occurence += 1;
+            pthread_mutex_unlock(&mutex);
             if(DEBUG) {
                 printf("[DEBUG] Ocorrencias da sequencia <012345> na posição: %d \n", i);
             }
@@ -399,7 +401,6 @@ void show_buffer(int* array, long long int array_size) {
 }
 
 void set_buffer(int* array, long long int array_size, int value) {
-    printf("array size: %lld \n", array_size);
     for(int i = 0; i < array_size; i++) {
         array[i] = value;
     }
