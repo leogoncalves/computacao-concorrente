@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
     if(DEBUG) {
         debug_binary_file(filenameControlTest);
     }
-    debug_binary_file(filenameControlTest);
+    
     /*
         Tamanho do Bloco (chunk do arquivo)
         1 KB = 1024 bytes
@@ -57,30 +57,87 @@ int main(int argc, char *argv[]) {
     */
     long long int N = 1024;
 
-    
-    long long int offset = 0;
+    /*
+        Variável de controle para
+        offset do arquivo (posição do cursor no arquivo)
+    */
+    long long int offsetP = 0;
+
+    /*
+        Variável de controle para
+        offset do buffer que será usado como consumidor
+    */
+    long long int offsetT = 0;
+
+
+    /*
+        Tamanho do buffer definido pelo usuário
+    */
     long long int buffer_size = N;
-    int* bufferT = (int*) malloc(buffer_size * sizeof(int));
+    
+
+    /*
+        Buffer que será utilizado como elemento a ser consumido.
+        Vamos passar elementos que estão no bufferP para o 
+        bufferT
+    */
+    int* bufferP = (int*) malloc(M * sizeof(int));
+    set_buffer(bufferP, M, -1);
+
+    /*
+        Buffer que vai receber os valores de bufferP 
+        e será utilizado como consumidor
+    */
+    int* bufferT = (int*) malloc(buffer_size * sizeof(int));    
     set_buffer(bufferT, buffer_size, -1);
     
+
+    /*
+        Controla os blocos do arquivo para leitura de chunks
+        de arquivo
+    */
+    long long int amount_blocks_P = ceil(sizeof(int) * size / M); 
     long long int i = 0;
-    long long int amount_blocks = ceil(M / N);
-    printf("amount_blocks: %lld \n", amount_blocks);
-    while(i != amount_blocks) {
-        /*
-            Aloca memória dinamicamente, a 
-            depender do tamanho do bloco
-            necessário
-        */
-        read_from_binary_file(filenameControlTest, bufferT, buffer_size, offset);
-        find_identical_value_sequence(bufferT, buffer_size, response);
-        find_continous_sequence_of_same_value(bufferT, buffer_size, response);
-        find_number_of_match_sequence(bufferT, buffer_size, response);
+
+    /*
+        Controla os blocos do arquivo para leitura chunk
+        para o buffer
+    */
+    long long int amount_blocks_T = ceil(M / N);    
+    long long int j = 0;
+
+    printf("[DEBUG] amount_blocks_P: %lld\n", amount_blocks_P);
+    printf("[DEBUG] amount_blocks_T: %lld\n", amount_blocks_T);
+    // printf("[DEBUG] Offset Inicial: %lld", offsetP);
+    while(i <= amount_blocks_P) {
         
-        offset += buffer_size;        
-        set_buffer(bufferT, buffer_size, -1);
+        printf("[DEBUG] Le bloco %lld do arquivo pra chunk\n", i);
+        
+        set_buffer(bufferP, M, -1);
+        read_from_binary_file(filenameControlTest, bufferP, M, offsetP);
+        
+        while(j < amount_blocks_T) {
+            set_buffer(bufferT, buffer_size, -1);
+            
+            // printf("[DEBUG]  Le do arquivo para buffer: Bloco j =  %lld\n", j);
+            
+            for(int k = 0; k < buffer_size; k++) {
+                bufferT[k] = bufferP[k + (j * buffer_size)];
+            }
+            
+            show_buffer(bufferT, buffer_size);
+            find_identical_value_sequence(bufferT, buffer_size, response);
+            find_continous_sequence_of_same_value(bufferT, buffer_size, response);
+            find_number_of_match_sequence(bufferT, buffer_size, response);
+            
+            j++;
+            
+        }
+        
+        offsetP += M;
         i++;
     }
+    
     showResponse(response);
 }
 
@@ -217,7 +274,7 @@ void find_number_of_match_sequence(int *array, int array_size, Response* respons
             }
         }
     }
-    response->occurrences_of_sequence = total_occurence;
+    response->occurrences_of_sequence += total_occurence;
 }
 
 /*
@@ -301,6 +358,7 @@ void show_buffer(int* array, long long int array_size) {
 }
 
 void set_buffer(int* array, long long int array_size, int value) {
+    printf("array size: %lld \n", array_size);
     for(int i = 0; i < array_size; i++) {
         array[i] = value;
     }
@@ -308,8 +366,9 @@ void set_buffer(int* array, long long int array_size, int value) {
 
 Response* initialize_response() {
     Response *response = (Response*) malloc(sizeof(Response));
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i < 3; i++){
         response->sequence_of_identical_values[i] = 0;
+    }
     response->amount_triples = 0;
     response->occurrences_of_sequence = 0;
 

@@ -12,5 +12,5 @@ clean:
 	rm -f main create_binary_file input.bin random_input.bin
 
 test:
-	@./create_binary_file 40
+	@./create_binary_file 1000000
 	@./main
