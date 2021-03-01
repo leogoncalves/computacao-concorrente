@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <math.h>
+#include "macros/timer.h"
 
 #define DEBUG 0
 
@@ -48,6 +49,9 @@ int main(int argc, char *argv[]) {
         printf("$ ./main 1000 100 \n");
         return 1;
     }
+    
+    double start, finish, elapsed; // tomadores de tempo
+    
     /*
         Inicializar nossa estrutura utilizada para 
         armazenar as respostas
@@ -133,6 +137,7 @@ int main(int argc, char *argv[]) {
         printf("[DEBUG] amount_blocks_T: %lld\n", amount_blocks_T);
         printf("[DEBUG] Offset Inicial: %lld", offsetP);
     }
+    GET_TIME(start);
     while(i <= amount_blocks_P) {
         
         if(DEBUG) {
@@ -179,6 +184,7 @@ int main(int argc, char *argv[]) {
                 }
             }
             
+            
             j++;
             
         }
@@ -186,8 +192,12 @@ int main(int argc, char *argv[]) {
         offsetP += M;
         i++;
     }
+    GET_TIME(finish);
     
     showResponse(response);
+    elapsed = finish - start;
+    printf("Tempo gasto: %lf segundos \n", elapsed);
+
 }
 
 void showResponse(Response *response) {
