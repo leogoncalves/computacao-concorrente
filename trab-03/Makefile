@@ -5,6 +5,10 @@ build: clean create_binary_file main
 main: clean
 	gcc -g main.c -o main -Wall -lpthread -lm
 
+compile: 
+	gcc -g main.c -o main -Wall -lpthread -lm
+	gcc -g sequencial.c -o sequencial -Wall -lpthread -lm
+
 create_binary_file: clean
 	gcc create_binary_file.c -o create_binary_file -Wall
 
